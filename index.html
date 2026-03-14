@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Puchilabs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:     #F4EFE4;
+      --ink:    #111111;
+      --yellow: #FFE600;
+      --red:    #FF3B00;
+      --grid:   rgba(0, 0, 0, 0.06);
+      --mono:   'IBM Plex Mono', monospace;
+      --display:'Bebas Neue', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 28px 28px;
+      color: var(--ink);
+      font-family: var(--mono);
+      min-height: 100vh;
+      padding: 3.5rem 2rem 5rem;
+    }
+
+    /* ---- LAYOUT ---- */
+    .contenedor {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* ---- CABECERA ---- */
+    .header {
+      border-top: 3px solid var(--ink);
+      border-bottom: 3px solid var(--ink);
+      padding: 1.25rem 0;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-family: var(--display);
+      font-size: clamp(4rem, 14vw, 8rem);
+      line-height: 0.9;
+      letter-spacing: 0.01em;
+    }
+
+    .logo span {
+      background: var(--yellow);
+      padding: 0 0.12em;
+    }
+
+    .meta {
+      font-size: 0.7rem;
+      line-height: 1.7;
+      text-align: right;
+      color: #555;
+      max-width: 200px;
+    }
+
+    .meta strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* ---- SUBTÍTULO ---- */
+    .subtitulo {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 3.5rem;
+    }
+
+    /* ---- SECCIÓN PROYECTOS ---- */
+    .seccion-titulo {
+      font-family: var(--display);
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      border-bottom: 1.5px solid var(--ink);
+      padding-bottom: 0.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .proyectos {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* ---- TARJETA PROYECTO ---- */
+    .proyecto {
+      display: grid;
+      grid-template-columns: 3rem 1fr auto;
+      align-items: start;
+      gap: 1.25rem;
+      padding: 1.25rem 0;
+      border-bottom: 1.5px solid var(--ink);
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      transition: background 0.15s;
+    }
+
+    .proyecto::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--yellow);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.2s ease;
+      z-index: 0;
+    }
+
+    .proyecto:hover::before { transform: scaleX(1); }
+    .proyecto > * { position: relative; z-index: 1; }
+
+    .proyecto-num {
+      font-family: var(--display);
+      font-size: 2.2rem;
+      line-height: 1;
+      color: var(--red);
+      padding-top: 0.1rem;
+    }
+
+    .proyecto-cuerpo {}
+
+    .proyecto-nombre {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+
+    .proyecto-desc {
+      font-size: 0.75rem;
+      color: #555;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .proyecto-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1.5px solid var(--ink);
+      padding: 0.2rem 0.5rem;
+      white-space: nowrap;
+      align-self: center;
+    }
+
+    /* ---- PIE ---- */
+    footer {
+      margin-top: 4rem;
+      font-size: 0.65rem;
+      color: #999;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="contenedor">
+
+    <header class="header">
+      <div class="logo">PUCHI<span>LABS</span></div>
+      <div class="meta">
+        <strong>Laboratorio de experimentos web</strong><br>
+        Puchita &amp; Puchito<br>
+        Jaén, España
+      </div>
+    </header>
+
+    <p class="subtitulo">Cada proyecto es un experimento. Los errores son bienvenidos.</p>
+
+    <h2 class="seccion-titulo">Proyectos</h2>
+
+    <div class="proyectos">
+
+      <a href="baraja-de-pareja/index.html" class="proyecto">
+        <div class="proyecto-num">01</div>
+        <div class="proyecto-cuerpo">
+          <div class="proyecto-nombre">Baraja de pareja</div>
+          <div class="proyecto-desc">Una baraja de cartas con preguntas para que parejas conversen.</div>
+        </div>
+        <div class="proyecto-tag">HTML · CSS · JS</div>
+      </a>
+
+      <!-- AÑADE AQUÍ LOS PROYECTOS NUEVOS siguiendo el mismo formato.
+           Incrementa el número (02, 03…) y apunta el href a la carpeta del proyecto. -->
+
+    </div>
+
+    <footer>Puchilabs &mdash; laboratorio abierto</footer>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,211 @@
+/* ============================================================
+   ESTILOS — Baraja de pareja
+   ============================================================ */
+
+/* --- RESET Y BASE --- */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-fondo:       #1a1025;
+  --color-superficie:  #2a1f3d;
+  --color-carta:       #ffffff;
+  --color-acento:      #c084fc;
+  --color-acento-2:    #f472b6;
+  --color-texto:       #f5f0ff;
+  --color-texto-suave: #a78bca;
+  --radio:             1rem;
+  --sombra:            0 8px 32px rgba(0, 0, 0, 0.4);
+  --fuente:            'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  font-family: var(--fuente);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+
+/* --- CONTENEDOR --- */
+
+.contenedor {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+
+/* --- CABECERA --- */
+
+.cabecera {
+  text-align: center;
+}
+
+.cabecera h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--color-acento), var(--color-acento-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitulo {
+  color: var(--color-texto-suave);
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+}
+
+
+/* --- BARAJA --- */
+
+.zona-baraja {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.baraja {
+  position: relative;
+  width: 220px;
+  height: 140px;
+}
+
+/* Las tres capas de la pila de cartas */
+.carta-pila {
+  position: absolute;
+  width: 200px;
+  height: 130px;
+  border-radius: var(--radio);
+  border: 2px solid rgba(192, 132, 252, 0.3);
+  background: var(--color-superficie);
+}
+
+.carta-pila--3 { transform: rotate(-6deg) translate(-4px, 4px); opacity: 0.4; }
+.carta-pila--2 { transform: rotate(-3deg) translate(-2px, 2px); opacity: 0.65; }
+.carta-pila--1 { transform: rotate(0deg);  background: linear-gradient(135deg, #2a1f3d, #3b2a52); }
+
+
+/* --- CONTADOR --- */
+
+.contador {
+  color: var(--color-texto-suave);
+  font-size: 0.85rem;
+}
+
+
+/* --- CARTA SACADA --- */
+
+.carta {
+  width: 100%;
+  background: var(--color-carta);
+  border-radius: var(--radio);
+  padding: 2rem 1.5rem;
+  box-shadow: var(--sombra);
+  text-align: center;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.carta.oculto {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+}
+
+.carta.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.pregunta {
+  color: #1a1025;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+
+/* --- MENSAJE BARAJA VACÍA --- */
+
+.mensaje {
+  width: 100%;
+  background: var(--color-superficie);
+  border: 1px solid rgba(192, 132, 252, 0.25);
+  border-radius: var(--radio);
+  padding: 1.5rem;
+  text-align: center;
+  transition: opacity 0.3s ease;
+}
+
+.mensaje.oculto  { opacity: 0; pointer-events: none; }
+.mensaje.visible { opacity: 1; pointer-events: auto; }
+
+.mensaje p:first-child {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-acento);
+}
+
+.mensaje-sub {
+  margin-top: 0.5rem;
+  color: var(--color-texto-suave);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+
+/* --- BOTONES --- */
+
+.controles {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn {
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:active  { transform: scale(0.96); }
+.btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.btn--primario {
+  background: linear-gradient(135deg, var(--color-acento), var(--color-acento-2));
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(192, 132, 252, 0.35);
+}
+
+.btn--primario:not(:disabled):hover {
+  box-shadow: 0 6px 20px rgba(192, 132, 252, 0.55);
+}
+
+.btn--secundario {
+  background: transparent;
+  color: var(--color-acento);
+  border: 2px solid var(--color-acento);
+}
+
+.btn--secundario:not(:disabled):hover {
+  background: rgba(192, 132, 252, 0.1);
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baraja de pareja</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="contenedor">
+
+    <header class="cabecera">
+      <h1>Baraja de pareja</h1>
+      <p class="subtitulo">Preguntas para conoceros un poquito más</p>
+    </header>
+
+    <!-- Zona de la baraja visual -->
+    <section class="zona-baraja" aria-label="Baraja de cartas">
+      <div id="baraja" class="baraja">
+        <div class="carta-pila carta-pila--3"></div>
+        <div class="carta-pila carta-pila--2"></div>
+        <div class="carta-pila carta-pila--1"></div>
+      </div>
+      <p id="contador" class="contador" aria-live="polite"></p>
+    </section>
+
+    <!-- Carta sacada -->
+    <section id="carta" class="carta oculto" aria-live="polite">
+      <p id="pregunta" class="pregunta"></p>
+    </section>
+
+    <!-- Mensaje de baraja vacía -->
+    <section id="mensaje" class="mensaje oculto" aria-live="assertive">
+      <p>¡Ya habéis hablado de todo! 🎉</p>
+      <p class="mensaje-sub">La baraja se ha restaurado en el orden en que salieron las cartas.<br>Podéis volver a barajar si queréis un orden nuevo.</p>
+    </section>
+
+    <!-- Controles -->
+    <div class="controles">
+      <button id="btn-sacar-carta" class="btn btn--primario">Sacar carta</button>
+      <button id="btn-barajar"     class="btn btn--secundario" disabled>Barajar</button>
+    </div>
+
+  </main>
+
+  <!-- El orden importa: primero las preguntas, luego la lógica -->
+  <script src="preguntas.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
