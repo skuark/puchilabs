@@ -2,6 +2,18 @@
 
 Laboratorio de experimentos web de Puchita y Puchito.
 
+## Desarrollo local
+
+Requiere [Node.js](https://nodejs.org). Sin dependencias que instalar.
+
+```bash
+npm start
+```
+
+Abre `http://localhost:3000` en el navegador.
+
+---
+
 ## Quiénes somos
 
 **Puchilabs** es el espacio de experimentación de Puchita y Puchito, una pareja afincada en Jaén, España.
@@ -44,6 +56,8 @@ Cada proyecto vive en su propia carpeta con su propio README. El fichero `index.
 ```
 puchilabs/
 ├── index.html      — página de inicio del laboratorio
+├── server.js       — servidor de desarrollo local
+├── package.json    — scripts npm
 ├── CLAUDE.md       — instrucciones de comportamiento para Claude Code
 ├── TIPS.md         — consejos que Claude comparte con Puchita al inicio de sesión
 ├── PUCHITA.md      — progreso y glosario personal de Puchita

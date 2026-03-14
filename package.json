@@ -1,0 +1,8 @@
+{
+  "name": "puchilabs",
+  "version": "1.0.0",
+  "description": "Laboratorio de experimentos web de Puchita y Puchito.",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
