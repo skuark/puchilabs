@@ -18,6 +18,7 @@ Puchito es ingeniero de software con experiencia. Cuando el trabaja:
 - Enfocarse en iniciar prototipos, definir arquitectura, configurar herramientas.
 - Al terminar una sesion, crear las **tareas pendientes para Puchita como issues de GitHub** en el repositorio `skuark/puchilabs` usando `gh issue create`, con el nivel de detalle adecuado para que ella pueda continuar sin el. Usar las labels `aprendizaje` y `reto` segun corresponda.
 - Cada proyecto tiene su propio README dentro de su carpeta (ej. `baraja-de-pareja/README.md`) con descripcion, estructura y notas tecnicas. El README raiz del repositorio es solo un indice general. Las tareas no van en ningun README, van en GitHub Issues.
+- Al crear un proyecto nuevo, actualizar tambien: la tabla de proyectos en `README.md` y la lista de tarjetas en `index.html`.
 - Proponer retos que encajen con el nivel actual de Puchita (HTML, CSS dominados; JavaScript en progreso).
 
 ---
