@@ -1,41 +1,24 @@
 # El cuaderno de Puchita
 
-Aqui apunto lo que voy aprendiendo. Lo actualizo al final de cada sesion.
-
----
 
 ## Conceptos que ya manejo
 
-<!-- Cuando domines algo, anótalo aquí. Por ejemplo: -->
-<!-- - **Variables con let y const** — sé cuándo usar cada una y por qué -->
-<!-- - **Selectores del DOM** — getElementById, querySelector... -->
+- Qué es un commit y para qué sirve?
+  Un commit es cuando genero codigo y lo guardo, y a medida que realizo un cambio o modificacion va quedando un historial de ese codigo con todas las
+  modificaciones y cambios que le he realizado. El archivo se guarda solo (con Ctrl+S) y no pasa automatico yo decido cuando hacerlo.
+- HTML es la estructura de la página (y por eso los textos de los botones están ahí)
+- app.js contiene la lógica del juego,he podido localizar la función mostrarCarta revisando y leyendo el codigo.
 
-_Aun sin entradas. ¡Pronto estará lleno!_
-
----
 
 ## Mi glosario
 
-<!-- Aquí van los términos técnicos nuevos, con tu propia definición. -->
-<!-- Intenta no copiar: explícalo como si se lo contaras a alguien. -->
-<!-- Por ejemplo: -->
-<!-- **Función** — un bloque de código que hace una tarea concreta y puedes reutilizar cuando quieras. -->
+- Commit — Es un registro de cambios guardado en un sistema de control de versiones.
+- Issue — Es un registro de un problema, tarea o mejora dentro de un proyecto.
+- gh — Es la herramienta de línea de comandos de GitHub CLI, creada por GitHub. Permite usar muchas funciones de GitHub directamente desde la terminal, sin tener que entrar al sitio web.
 
-_Aun sin entradas._
-
----
 
 ## Cosas que quiero entender mejor
 
-<!-- Lo que se te ha atascado o te ha quedado a medias. -->
-<!-- Así sabes por dónde seguir en la próxima sesión. -->
-
-_Aun sin entradas._
-
----
 
 ## Sesiones
-
-<!-- Un par de líneas por sesión: qué hiciste, qué salió bien, qué fue difícil. -->
-
-_Primera sesion pendiente._
+En la sesion primera sesion, he desarrollado el primer Issue el cual consistia en explorar los diferentes ficheros que componen el proyecto, revisarlos uno a uno comprendiendo los conceptos y funcionalidades de cada uno, asi como aprender a navegar por la plataforma de Github.
