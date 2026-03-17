@@ -11,15 +11,15 @@
 }
 
 :root {
-  --color-fondo:       #1a1025;
-  --color-superficie:  #2a1f3d;
-  --color-carta:       #ffffff;
-  --color-acento:      #c084fc;
-  --color-acento-2:    #f472b6;
-  --color-texto:       #f5f0ff;
-  --color-texto-suave: #a78bca;
+  --color-fondo:       #fad186;
+  --color-superficie:  #d81159;
+  --color-carta:       #8f2d56;
+  --color-acento:      #0ca49f;
+  --color-acento-2:    #73d2de;
+  --color-texto:       #f3f1f6;
+  --color-texto-suave: #2c1f3a;
   --radio:             1rem;
-  --sombra:            0 8px 32px rgba(0, 0, 0, 0.4);
+  --sombra:            0 8px 32px rgb(255, 255, 255);
   --fuente:            'Segoe UI', system-ui, sans-serif;
 }
 
@@ -132,7 +132,7 @@ body {
 }
 
 .pregunta {
-  color: #1a1025;
+  color: #edeaf1;
   font-size: 1.15rem;
   line-height: 1.6;
   font-weight: 500;
@@ -180,7 +180,6 @@ body {
 .btn {
   padding: 0.75rem 1.75rem;
   border-radius: 999px;
-  border: none;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -192,8 +191,8 @@ body {
 
 .btn--primario {
   background: linear-gradient(135deg, var(--color-acento), var(--color-acento-2));
-  color: #fff;
-  box-shadow: 0 4px 16px rgba(192, 132, 252, 0.35);
+  color: #0b0b0b;
+  box-shadow: 0 4px 16px;
 }
 
 .btn--primario:not(:disabled):hover {
@@ -201,11 +200,13 @@ body {
 }
 
 .btn--secundario {
-  background: transparent;
-  color: var(--color-acento);
-  border: 2px solid var(--color-acento);
+  background: linear-gradient(135deg, var(--color-acento), var(--color-acento-2));
+  color: #0b0b0b;
+  box-shadow: 0 4px 16px;
+  
 }
 
+
 .btn--secundario:not(:disabled):hover {
-  background: rgba(192, 132, 252, 0.1);
+  box-shadow: 0 6px 20px rgba(192, 132, 252, 0.55);
 }
