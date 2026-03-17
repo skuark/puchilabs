@@ -9,6 +9,13 @@
 - HTML es la estructura de la página (y por eso los textos de los botones están ahí)
 - app.js contiene la lógica del juego,he podido localizar la función mostrarCarta revisando y leyendo el codigo.
 
+- Qué son las variables CSS en :root y para qué sirven
+  Es donde guardamos valores reutilizables del proyecto, como la paleta de colores, tamaños o fuentes.
+- Cómo funciona git pull --rebase y cuándo usarlo
+  Trae lo nuevo y luego añade lo mío encima, --rebase se usa cuando quiero que todo se vea ordenado y cuando aun no he subido mis cambios (push)
+- Qué significa un error de "divergent branches"
+  Quiere decir que tengo cosas nuevas, el servidor tambien y git quiere saber como quiero juntarlo.
+
 
 ## Mi glosario
 
