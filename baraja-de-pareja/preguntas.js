@@ -26,4 +26,10 @@ const PREGUNTAS = [
   { id: 18, texto: "¿Qué aprendiste sobre ti mismo/a desde que estamos juntos?" },
   { id: 19, texto: "¿Qué es lo que más te gusta de cómo somos cuando estamos los dos solos?" },
   { id: 20, texto: "Si tuvieras que describir nuestra relación con una sola imagen, ¿cuál sería?" },
+  { id: 21, texto: "¿Qué tipo de familia te gustaría construir y qué cosas de tu infancia repetirías o evitarías?"},
+  { id: 22, texto: "¿Cómo imaginas nuestro rol como padres y qué valores serían innegociables para ti al criar hijos?"},
+  { id: 23, texto: "¿Qué significa para ti ‘tener estabilidad’ en una familia, y cómo sabrías que la hemos alcanzado juntos?"},
+  { id: 24, texto: "¿Qué miedos tienes respecto a formar una familia y cómo crees que podríamos afrontarlos juntos?"},
+  { id: 25, texto: "¿Cómo te gustaría que fuera nuestra vida en 10 o 20 años, más allá de lo material?"},
+  { id: 26, texto: "¿Qué tipo de ejemplo te gustaría que nuestros hijos vieran en nuestra relación como pareja?"},
 ];
