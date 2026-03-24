@@ -80,9 +80,16 @@ function sacarCarta() {
  * Muestra una carta con su pregunta en pantalla.
  */
 function mostrarCarta(carta) {
+  elCarta.classList.remove('visible');
+  elCarta.classList.add('oculto');
   elPregunta.textContent = carta.texto;
-  elCarta.classList.remove('oculto');
-  elCarta.classList.add('visible');
+  elBaraja.classList.add('carta-saliendo');
+   setTimeout(function() {
+    elBaraja.classList.remove('carta-saliendo');
+    elCarta.classList.remove('oculto');
+    elCarta.classList.add('visible');
+  }, 400);
+  
 }
 
 /**
