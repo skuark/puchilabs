@@ -69,3 +69,4 @@ puchilabs/
 | # | Proyecto | Descripción | Stack |
 |---|---|---|---|
 | 01 | [Baraja de pareja](baraja-de-pareja/) | Baraja de cartas con preguntas para conversar en pareja | HTML, CSS, JS |
+| 02 | [Mapa de pareja](mapa-de-pareja/) | Mapa interactivo con fotos geolocalizadas de momentos de pareja | HTML, CSS, JS, Leaflet, Node.js |
