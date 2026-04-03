@@ -4,13 +4,21 @@ Laboratorio de experimentos web de Puchita y Puchito.
 
 ## Desarrollo local
 
-Requiere [Node.js](https://nodejs.org). Sin dependencias que instalar.
+Requiere [Node.js](https://nodejs.org).
+
+### Proyectos estáticos (baraja de pareja)
+
+Sin dependencias. Desde la raíz del repositorio:
 
 ```bash
 npm start
 ```
 
 Abre `http://localhost:3000` en el navegador.
+
+### Proyectos con servidor propio (mapa de pareja)
+
+Cada uno tiene sus propias dependencias y su propio servidor. Consulta el README de cada proyecto para las instrucciones de setup y arranque.
 
 ---
 
