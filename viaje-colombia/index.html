@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gastos — Colombia 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #F4EFE4;
+      --ink:     #111111;
+      --yellow:  #FFE600;
+      --red:     #FF3B00;
+      --grid:    rgba(0, 0, 0, 0.06);
+      --mono:    'IBM Plex Mono', monospace;
+      --display: 'Bebas Neue', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 28px 28px;
+      color: var(--ink);
+      font-family: var(--mono);
+      min-height: 100vh;
+      padding: 2rem 1.25rem 6rem;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+    .header {
+      border-top: 3px solid var(--ink);
+      border-bottom: 3px solid var(--ink);
+      padding: 1rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .title {
+      font-family: var(--display);
+      font-size: clamp(2.5rem, 10vw, 4rem);
+      line-height: 1;
+    }
+
+    .title span {
+      background: var(--yellow);
+      padding: 0 0.08em;
+    }
+
+    .currency-selector {
+      display: flex;
+      gap: 0.25rem;
+      padding-top: 0.25rem;
+    }
+
+    .currency-btn {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      border: 1.5px solid var(--ink);
+      background: transparent;
+      padding: 0.2rem 0.45rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .currency-btn.active {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .total-block {
+      margin-top: 0.75rem;
+    }
+
+    .total-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #666;
+    }
+
+    .total-amount {
+      font-family: var(--display);
+      font-size: clamp(2.8rem, 11vw, 4.5rem);
+      line-height: 1;
+      color: var(--red);
+      word-break: break-all;
+    }
+
+    /* FORM */
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-bottom: 2.5rem;
+    }
+
+    input[type="number"],
+    input[type="text"] {
+      font-family: var(--mono);
+      font-size: 1rem;
+      background: white;
+      border: 1.5px solid var(--ink);
+      padding: 0.65rem 0.75rem;
+      width: 100%;
+      outline: none;
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+
+    input[type="number"]:focus,
+    input[type="text"]:focus {
+      border-color: var(--red);
+    }
+
+    input[type="number"]::placeholder,
+    input[type="text"]::placeholder {
+      color: #bbb;
+      font-style: italic;
+    }
+
+    .categories {
+      display: flex;
+      gap: 0.3rem;
+      flex-wrap: wrap;
+    }
+
+    .cat-btn {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1.5px solid var(--ink);
+      background: transparent;
+      padding: 0.35rem 0.55rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .cat-btn.active {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .add-btn {
+      font-family: var(--display);
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+      background: var(--yellow);
+      border: 1.5px solid var(--ink);
+      padding: 0.7rem;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .add-btn:hover  { background: var(--ink); color: var(--yellow); }
+    .add-btn:active { transform: scale(0.98); }
+
+    /* LIST */
+    .day-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .day-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1.5px solid var(--ink);
+      padding-bottom: 0.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .day-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #555;
+    }
+
+    .day-total {
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+
+    .expense-item {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.55rem 0;
+      border-bottom: 1px dashed #ccc;
+    }
+
+    .expense-note {
+      font-size: 0.85rem;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .expense-cat {
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #999;
+    }
+
+    .expense-amount {
+      font-size: 0.9rem;
+      font-weight: 500;
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .delete-btn {
+      background: transparent;
+      border: none;
+      color: #ccc;
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 0.1rem 0.2rem;
+      line-height: 1;
+      transition: color 0.15s;
+    }
+
+    .delete-btn:hover { color: var(--red); }
+
+    .empty-state {
+      text-align: center;
+      font-size: 0.75rem;
+      font-style: italic;
+      color: #aaa;
+      padding: 2.5rem 0;
+      line-height: 2;
+    }
+
+    .footer-actions {
+      margin-top: 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .count-label {
+      font-size: 0.62rem;
+      color: #aaa;
+      letter-spacing: 0.06em;
+    }
+
+    .clear-btn {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: transparent;
+      border: none;
+      color: #ccc;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+    }
+
+    .clear-btn:hover { color: var(--red); }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header class="header">
+      <div class="header-top">
+        <div class="title">GASTOS<br><span>COLOMBIA</span></div>
+        <div class="currency-selector">
+          <button class="currency-btn" data-currency="COP">COP</button>
+          <button class="currency-btn" data-currency="EUR">EUR</button>
+          <button class="currency-btn" data-currency="USD">USD</button>
+        </div>
+      </div>
+      <div class="total-block">
+        <div class="total-label">Total gastado</div>
+        <div class="total-amount" id="total">0</div>
+      </div>
+    </header>
+
+    <div class="form">
+      <input type="number" id="amount" placeholder="Importe" min="0" step="any" inputmode="decimal" autocomplete="off" />
+      <input type="text"   id="note"   placeholder="Nota (opcional)" maxlength="60" autocomplete="off" />
+      <div class="categories" id="categories">
+        <button class="cat-btn active" data-cat="comida">Comida</button>
+        <button class="cat-btn" data-cat="transporte">Transporte</button>
+        <button class="cat-btn" data-cat="alojamiento">Alojamiento</button>
+        <button class="cat-btn" data-cat="ocio">Ocio</button>
+        <button class="cat-btn" data-cat="otro">Otro</button>
+      </div>
+      <button class="add-btn" id="add-btn">AÑADIR GASTO</button>
+    </div>
+
+    <div id="expense-list"></div>
+
+    <div class="footer-actions">
+      <span class="count-label" id="count-label"></span>
+      <button class="clear-btn" id="clear-btn">Borrar todo</button>
+    </div>
+
+  </div>
+
+  <script>
+    const STORAGE_KEY  = 'colombia_2026_gastos';
+    const CURRENCY_KEY = 'colombia_2026_currency';
+
+    let expenses    = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    let currency    = localStorage.getItem(CURRENCY_KEY) || 'COP';
+    let selectedCat = 'comida';
+
+    // Init
+    applyCurrency(currency);
+    render();
+
+    // Currency buttons
+    document.querySelectorAll('.currency-btn').forEach(btn => {
+      btn.addEventListener('click', () => applyCurrency(btn.dataset.currency));
+    });
+
+    function applyCurrency(c) {
+      currency = c;
+      localStorage.setItem(CURRENCY_KEY, c);
+      document.querySelectorAll('.currency-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.currency === c);
+      });
+      render();
+    }
+
+    // Category buttons
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        selectedCat = btn.dataset.cat;
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // Add
+    document.getElementById('add-btn').addEventListener('click', addExpense);
+    document.getElementById('amount').addEventListener('keydown', e => { if (e.key === 'Enter') addExpense(); });
+    document.getElementById('note').addEventListener('keydown',   e => { if (e.key === 'Enter') addExpense(); });
+
+    function addExpense() {
+      const amountInput = document.getElementById('amount');
+      const noteInput   = document.getElementById('note');
+      const amount      = parseFloat(amountInput.value);
+
+      if (!amount || amount <= 0) {
+        amountInput.style.borderColor = 'var(--red)';
+        setTimeout(() => { amountInput.style.borderColor = ''; }, 700);
+        amountInput.focus();
+        return;
+      }
+
+      expenses.unshift({
+        id:        Date.now(),
+        amount,
+        note:      noteInput.value.trim() || selectedCat,
+        category:  selectedCat,
+        date:      todayStr(),
+        timestamp: Date.now()
+      });
+
+      save();
+      render();
+      amountInput.value = '';
+      noteInput.value   = '';
+      amountInput.focus();
+    }
+
+    // Delete
+    function deleteExpense(id) {
+      expenses = expenses.filter(e => e.id !== id);
+      save();
+      render();
+    }
+
+    // Clear all
+    document.getElementById('clear-btn').addEventListener('click', () => {
+      if (expenses.length === 0) return;
+      if (confirm('¿Borrar todos los gastos? No se puede deshacer.')) {
+        expenses = [];
+        save();
+        render();
+      }
+    });
+
+    function save() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses));
+    }
+
+    // Render
+    function render() {
+      const total = expenses.reduce((sum, e) => sum + e.amount, 0);
+      document.getElementById('total').textContent = fmt(total);
+
+      const countEl = document.getElementById('count-label');
+      countEl.textContent = expenses.length > 0
+        ? `${expenses.length} gasto${expenses.length !== 1 ? 's' : ''}`
+        : '';
+
+      const listEl = document.getElementById('expense-list');
+
+      if (expenses.length === 0) {
+        listEl.innerHTML = '<div class="empty-state">Sin gastos todavía.<br>¡Que empiece el viaje!</div>';
+        return;
+      }
+
+      const grouped = {};
+      for (const e of expenses) {
+        (grouped[e.date] = grouped[e.date] || []).push(e);
+      }
+
+      const sortedDates = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
+
+      listEl.innerHTML = sortedDates.map(date => {
+        const dayTotal = grouped[date].reduce((s, e) => s + e.amount, 0);
+        return `
+          <div class="day-group">
+            <div class="day-header">
+              <span class="day-label">${fmtDate(date)}</span>
+              <span class="day-total">${fmt(dayTotal)}</span>
+            </div>
+            ${grouped[date].map(e => `
+              <div class="expense-item">
+                <div>
+                  <div class="expense-note">${esc(e.note)}</div>
+                  <div class="expense-cat">${e.category}</div>
+                </div>
+                <div class="expense-amount">${fmt(e.amount)}</div>
+                <button class="delete-btn" data-id="${e.id}" title="Eliminar">&times;</button>
+              </div>
+            `).join('')}
+          </div>`;
+      }).join('');
+
+      listEl.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', () => deleteExpense(Number(btn.dataset.id)));
+      });
+    }
+
+    function fmt(amount) {
+      if (currency === 'COP') {
+        return amount.toLocaleString('es-CO', { maximumFractionDigits: 0 }) + '\u00a0COP';
+      }
+      if (currency === 'EUR') {
+        return amount.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '\u00a0€';
+      }
+      return '$' + amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function fmtDate(dateStr) {
+      const [y, m, d] = dateStr.split('-').map(Number);
+      const today     = new Date(); today.setHours(0,0,0,0);
+      const target    = new Date(y, m - 1, d);
+      if (target.getTime() === today.getTime()) return 'Hoy';
+      const yesterday = new Date(today); yesterday.setDate(yesterday.getDate() - 1);
+      if (target.getTime() === yesterday.getTime()) return 'Ayer';
+      return target.toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' });
+    }
+
+    function todayStr() {
+      const d = new Date();
+      return d.getFullYear() + '-'
+        + String(d.getMonth() + 1).padStart(2, '0') + '-'
+        + String(d.getDate()).padStart(2, '0');
+    }
+
+    function esc(str) {
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+  </script>
+</body>
+</html>
